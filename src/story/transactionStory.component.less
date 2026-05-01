@@ -1,0 +1,72 @@
+.tx-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.tx-card {
+  padding: 12px;
+  border: 1px solid #32344a;
+  border-radius: 12px;
+  background: #151523;
+  transition: 0.2s ease;
+}
+
+.tx-card:hover {
+  border-color: #6f5cff;
+  box-shadow: 0 0 0 1px rgba(111, 92, 255, 0.25);
+}
+
+.tx-card_income { border-left: 4px solid #2ec27e; }
+.tx-card_expense { border-left: 4px solid #ef4444; }
+
+.tx-top, .tx-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tx-category { margin: 8px 0; color: #dfe2ff; }
+.tx-date { color: #a9add1; font-size: 13px; }
+.tx-type { color: #c6caf0; font-size: 13px; }
+.tx-amount { font-size: 18px; }
+
+.tx-edit {
+  background: transparent;
+  border: 1px solid #444867;
+  color: #dfe2ff;
+  border-radius: 8px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+
+.tx-card {
+  padding: 12px;
+  border: 1px solid #32344a;
+  border-radius: 12px;
+  background: #151523;
+  transition: 0.2s ease;
+
+  animation: tx-in 220ms ease-out;
+  transform-origin: top center;
+}
+
+@keyframes tx-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tx-card {
+    animation: none;
+  }
+}

@@ -1,0 +1,49 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@taiga-ui/core/styles/taiga-ui-local.less';
+@import '@taiga-ui/core/styles/taiga-ui-theme.less';
+@import '@taiga-ui/core/styles/taiga-ui-fonts.less';
+
+:root {
+  color-scheme: dark;
+
+  --tui-primary: #8b5cf6;
+  --tui-background-base: #0f0f17;
+  --tui-background-elevation-1: #141422;
+  --tui-background-elevation-2: #1a1a2b;
+  --tui-text-primary: #f2f2ff;
+  --tui-text-secondary: #b8b8d6;
+  --tui-border-normal: #34364d;
+  --tui-status-negative: #ff5f87;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(1200px 500px at 10% -10%, #2a1a46 0%, transparent 60%),
+    radial-gradient(900px 450px at 100% 0%, #1f1237 0%, transparent 55%),
+    #0b0b12;
+  color: #f2f2ff;
+}
+
+tui-dropdown,
+tui-data-list-wrapper,
+tui-calendar {
+  background: #141422 !important;
+  color: #f2f2ff !important;
+  border-color: #34364d !important;
+}
+
+tui-option,
+button[tuiOption] {
+  color: #f2f2ff !important;
+}
+
+tui-option:hover,
+button[tuiOption]:hover {
+  background: #24243a !important;
+}

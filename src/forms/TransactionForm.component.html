@@ -1,0 +1,141 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <label>Тип транзакции
+    <label for = "income" tuiBlock>
+        <input
+            formControlName="type"
+            tuiBlock
+            type="radio"
+            value="income"
+            id = "income"
+        />
+        Доход
+    </label>
+
+    <label for = "expense" tuiBlock>
+        <input 
+            type="radio"
+            formControlName = "type"
+            tuiBlock
+            value = "expense"
+            id = "expense"
+        />
+        Расход
+    </label>
+    </label>
+
+    <tui-error
+        [formControl]="form.controls.type"
+        [error]="['required'] | tuiFieldError | async"
+    />
+
+
+    <label tuiLabel>
+        Категория транзакции
+        <tui-textfield tuiChevron>
+            <input
+                tuiSelect 
+                formControlName="category"
+                [placeholder]="form.controls.type.value ? 'Выберите категорию' : 'Сначала выберите тип'"
+            />
+
+            <tui-data-list-wrapper
+                *tuiTextfieldDropdown
+                new
+                [items]="currentCategories" 
+            />
+        </tui-textfield>
+    </label>
+    <tui-error [error]="categoryError" />
+    <tui-error
+        [formControl]="form.controls.category"
+        [error]="['required'] | tuiFieldError | async"
+    />
+
+    <label tuiLabel>
+            Сумма транзакции
+    <tui-textfield>
+        <input
+            formControlName="accumulation"
+            tuiInputNumber
+            [postfix]="' ' + ('RUB' | tuiCurrency)"
+            placeholder="Введите сумму транзакции"
+        />
+    </tui-textfield>
+      </label>
+
+      <tui-error
+        [formControl]="form.controls.accumulation"
+        [error]="['required', 'min', 'max'] | tuiFieldError | async"
+    />
+    
+    <tui-textfield [content]="form.controls.date.value?.daySame(today) ? 'Сегодня' : ''">
+        <label tuiLabel>Выберите дату транзакции</label>
+        <input 
+            tuiInputDate
+            formControlName="date"
+            [max]="today"
+            placeholder="Выберите дату"
+        />
+         <ng-template
+        let-close
+        tuiTextfieldDropdown
+    >
+        <tui-calendar
+            [value]="form.controls.date.value"
+            [max]="today"
+            (dayClick)="form.controls.date.setValue($event); close()"
+        />
+        <button
+            appearance="action"
+            size="m"
+            tuiButton
+            type="button"
+            class="button"
+            (click)="form.patchValue({ date: today }); close()"
+        >
+            Сегодня
+        </button>
+        </ng-template>
+    </tui-textfield>
+
+    <tui-error
+        [formControl]="form.controls.date"
+        [error]="['required'] | tuiFieldError | async"
+    />
+
+        <label tuiBlock>
+        <input 
+            type="checkbox"
+            tuiCheckbox
+            formControlName = "addComment"
+        />
+        Добавить комментарий
+    </label>
+
+    <label tuiLabel>
+        Комментарий
+        <tui-textfield>
+            <textarea
+                formControlName = "comment"
+                placeholder="Введите комментарий"
+                tuiTextarea
+                [appCommentValidators] = "form.controls.addComment.value"
+            ></textarea>
+        </tui-textfield>
+    </label>
+
+    <tui-error
+        [formControl]="form.controls.comment"
+        [error]="['commentRequired','maxlength'] | tuiFieldError | async"
+    />
+
+     <button
+        tuiButton
+        appearance="primary"
+         size="m"
+        type="submit"
+    >
+        Сохранить
+    </button>
+</form>
+ 

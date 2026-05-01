@@ -1,0 +1,47 @@
+<div class="stats-grid">
+  <section class="chart-card">
+    <h3>Доходы</h3>
+
+    @if (incomeValues().length === 0) {
+      <p>Нет данных по доходам</p>
+    } @else {
+      <tui-ring-chart
+        [value]="incomeValues()"
+        size="l"
+        [activeItemIndex]="incomeActiveIndex()"
+        (activeItemIndexChange)="incomeActiveIndex.set($event)"
+      >
+        @if (activeIncome(); as item) {
+          <strong>{{ item.label }}</strong>
+          <div>{{ formatMoney(item.value) }}</div>
+        } @else {
+          <strong>Итого доходы</strong>
+          <div>{{ formatMoney(incomeTotal()) }}</div>
+        }
+      </tui-ring-chart>
+    }
+  </section>
+
+  <section class="chart-card">
+    <h3>Расходы</h3>
+
+    @if (expenseValues().length === 0) {
+      <p>Нет данных по расходам</p>
+    } @else {
+      <tui-ring-chart
+        size="l"
+        [value]="expenseValues()"
+        [activeItemIndex]="expenseActiveIndex()"
+        (activeItemIndexChange)="expenseActiveIndex.set($event)"
+      >
+        @if (activeExpense(); as item) {
+          <strong>{{ item.label }}</strong>
+          <div>{{ formatMoney(item.value) }}</div>
+        } @else {
+          <strong>Итого расходы</strong>
+          <div>{{ formatMoney(expenseTotal()) }}</div>
+        }
+      </tui-ring-chart>
+    }
+  </section>
+</div>

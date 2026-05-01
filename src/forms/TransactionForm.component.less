@@ -1,0 +1,57 @@
+:host {
+  display: block;
+  color: #ececff;
+
+  --tui-primary: #8b5cf6;
+  --tui-status-negative: #ff5f87;
+}
+
+form {
+  display: grid;
+  gap: 14px;
+  max-inline-size: 460px;
+}
+
+label[tuiBlock] {
+  inline-size: 100%;
+  justify-content: center;
+  border: 1px solid #34364d;
+  border-radius: 12px;
+  background: #141422;
+  color: #f1f1ff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+label[tuiBlock]:hover {
+  border-color: #55587a;
+}
+
+label[tuiLabel] {
+  color: #d8d8f0;
+  font-weight: 600;
+}
+
+button[tuiButton] {
+  margin-top: 6px;
+}
+
+
+label[tuiBlock]:has(input:checked) {
+  border-color: #8b5cf6;
+  background: linear-gradient(180deg, #1a1630 0%, #141422 100%);
+  box-shadow: 0 0 0 1px rgba(139, 92, 246, 0.4), 0 0 18px rgba(139, 92, 246, 0.2);
+}
+
+tui-error {
+  color: #ff8aa8;
+}
+
+label[for='income'],
+label[for='expense'] {
+  margin-bottom: 0;
+}
+
+label[for='income'] {
+  margin-bottom: 10px;
+}
+

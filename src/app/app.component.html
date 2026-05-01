@@ -1,0 +1,24 @@
+<tui-root>
+    <main class="page">
+        <section class="layout">
+            <section class="card left">
+                <h1>Форма транзакции</h1>
+                <app-transaction-form
+                    [editingTransaction] = "editingTransaction"
+                    (editCompleted)="editCompleted()"
+                >
+
+                </app-transaction-form>
+            </section>
+
+            <section class="right">
+                <section class="card">
+                    <app-transaction-story (edit)="onEditRequested($event)" />
+                 </section>
+                 <section class="card diagram-full">
+          <app-diagram />
+        </section>
+      </section>
+      </section>
+</main>
+</tui-root>

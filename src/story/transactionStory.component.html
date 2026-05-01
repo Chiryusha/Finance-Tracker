@@ -1,0 +1,29 @@
+<h2>История транзакций</h2>
+
+@if (transactions().length === 0) {
+    <p>Список транзакций пуст</p>
+}
+
+@else{
+    <ul class="tx-list">
+        @for (i of transactions(); track i.id) {
+            <li 
+                class="tx-card"
+                [class.tx-card_income]="i.type === 'income'"
+                [class.tx-card_expense]="i.type === 'expense'"
+                [tuiHint] = "i.comment || null"
+            >
+                <div>
+                    <span class="tx-date">{{ i.date }}</span>
+                    <span class="tx-type">{{ i.type === 'income' ? 'Доход' : 'Расход' }}</span>
+                </div>
+                <div class="tx-category">{{ i.category }}</div>
+
+                <div>
+                    <strong class="tx-amount">{{i.amount | signPipe : i.type}}</strong>
+                    <button type="button" class="tx-edit" (click) = "edit.emit(i)">Редактировать</button>
+                </div>
+            </li>
+        }
+    </ul>
+}
